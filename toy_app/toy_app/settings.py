@@ -25,7 +25,7 @@ SECRET_KEY = '@kivr*c=sztki$u19l963f4cdvdhn2xf9$mcb*39^s=jmb5czu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.elb.amazonaws.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
