@@ -1,2 +1,6 @@
+### Base ###
 django
 djangorestframework
+
+### Versioning ###
+bumpversion==0.6.0
