@@ -43,7 +43,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "toy.selectorLabels" -}}
-version: {{ .Chart.AppVersion }}
+version: {{ .Chart.AppVersion | quote }}
 app: {{ include "toy.name" . }}
 {{/*app.kubernetes.io/name: {{ include "toy.name" . }}*/}}
 {{/*app.kubernetes.io/instance: {{ .Release.Name }}*/}}
