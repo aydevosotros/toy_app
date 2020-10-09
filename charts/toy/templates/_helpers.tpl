@@ -50,6 +50,7 @@ Selector labels
 {{- define "toy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "toy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 
 {{/*
