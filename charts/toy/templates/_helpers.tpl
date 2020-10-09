@@ -40,6 +40,8 @@ helm.sh/chart: {{ include "toy.chart" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+app: {{ include "toy.name" . }}
+version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 
 {{/*
@@ -48,8 +50,6 @@ Selector labels
 {{- define "toy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "toy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-app: {{ include "toy.name" . }}
-version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 
 {{/*

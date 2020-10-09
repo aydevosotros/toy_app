@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: {{ include "toy.fullname" . }}
   labels:
-    app: toy-nginx
-    version: 0.1.0
     {{- include "toy.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
