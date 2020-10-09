@@ -37,10 +37,7 @@ Common labels
 helm.sh/chart: {{ include "toy.chart" . }}
 app: {{ include "toy.name" . }}
 {{ include "toy.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 version: {{ .Chart.AppVersion | quote }}
-{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
@@ -50,6 +47,7 @@ Selector labels
 {{- define "toy.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "toy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 
 {{/*
