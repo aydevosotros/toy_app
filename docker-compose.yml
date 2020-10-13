@@ -6,3 +6,5 @@ services:
       context: .
     volumes:
     - ./toy_app:/opt/app
+    ports:
+    - 8000:8000
