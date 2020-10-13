@@ -2,5 +2,8 @@
 django
 djangorestframework
 
+### Metrics ###
+django-prometheus
+
 ### Versioning ###
 bumpversion==0.6.0
