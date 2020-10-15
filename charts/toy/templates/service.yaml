@@ -30,5 +30,8 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: 3306
+  selector:
+    app: {{ include "toy.fullname" . }}-mysql
+    {{- include "toy.db-labels" . | nindent 4 }}
 
 
