@@ -2,6 +2,9 @@
 django
 djangorestframework
 
+### DataBase ###
+mysqlclient
+
 ### Metrics ###
 django-prometheus
 

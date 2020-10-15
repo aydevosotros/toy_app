@@ -78,8 +78,8 @@ spec:
     metadata:
       annotations: {}
       labels:
-        app: toy-mysql
-      name: toy-mysql
+        app: {{ include "toy.fullname" . }}-mysql
+      name: {{ include "toy.fullname" . }}-mysql
     spec:
       containers:
       - image: mysql:5.6
