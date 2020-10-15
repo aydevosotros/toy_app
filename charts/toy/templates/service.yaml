@@ -1,4 +1,4 @@
-### QAPI Service ###
+### toy-app Service ###
 apiVersion: v1
 kind: Service
 metadata:
@@ -16,4 +16,19 @@ spec:
       name: http
   selector:
     {{- include "toy.selectorLabels" . | nindent 4 }}
+---
+### toy-mysql ###
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "toy.fullname" . }}-mysql
+  labels:
+    app: {{ include "toy.fullname" . }}-mysql
+    {{- include "toy.db-labels" . | nindent 4 }}
+spec:
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+
 
