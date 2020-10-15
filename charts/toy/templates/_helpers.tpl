@@ -39,6 +39,14 @@ helm.sh/chart: {{ include "toy.chart" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
+{{- define "toy.db-labels" -}}
+version: {{ .Chart.AppVersion | quote }}
+app: {{ include "toy.name" . }}
+app.kubernetes.io/name: db-{{ include "toy.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+
 {{/*
 Selector labels
 */}}
@@ -46,6 +54,14 @@ Selector labels
 version: {{ .Chart.AppVersion | quote }}
 app: {{ include "toy.name" . }}
 app.kubernetes.io/name: {{ include "toy.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+
+{{- define "toy.db-selectorLabels" -}}
+version: {{ .Chart.AppVersion | quote }}
+app: {{ include "toy.name" . }}
+app.kubernetes.io/name: db-{{ include "toy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}

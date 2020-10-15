@@ -62,25 +62,28 @@ spec:
       {{- end }}
 ---
 ### DB MySQL ###
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql
+  name: {{ include "toy.fullname" . }}-mysql
+  labels:
+    app: {{ include "toy.fullname" . }}-mysql
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: {{ include "toy.fullname" . }}-mysql
   strategy:
     type: Recreate
   template:
     metadata:
+      annotations: {}
       labels:
         app: toy-mysql
       name: toy-mysql
     spec:
       containers:
       - image: mysql:5.6
-        name: toy-mysql
+        name: {{ include "toy.fullname" . }}-mysql
         env:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD

@@ -1,6 +1,0 @@
-dependencies:
-  - name: mysql-cluster
-    version: 0.2.0
-    repository: https://presslabs.github.io/charts
-    condition: mysql.enabled
-    alias: mysql
