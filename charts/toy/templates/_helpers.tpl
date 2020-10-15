@@ -41,8 +41,8 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 
 {{- define "toy.db-labels" -}}
 version: {{ .Chart.AppVersion | quote }}
-app: {{ include "toy.name" . }}
-app.kubernetes.io/name: db-{{ include "toy.name" . }}
+app: {{ include "toy.name" . }}-mysql
+app.kubernetes.io/name: {{ include "toy.name" . }}-mysql
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -60,8 +60,8 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 
 {{- define "toy.db-selectorLabels" -}}
 version: {{ .Chart.AppVersion | quote }}
-app: {{ include "toy.name" . }}
-app.kubernetes.io/name: db-{{ include "toy.name" . }}
+app: {{ include "toy.name" . }}-mysql
+app.kubernetes.io/name: {{ include "toy.name" . }}-mysql
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
