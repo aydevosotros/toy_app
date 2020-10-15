@@ -81,8 +81,11 @@ WSGI_APPLICATION = 'toy_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_prometheus.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django_prometheus.db.backends.mysql',
+        'NAME': 'toy',
+        'USER': 'toy',
+        'PASSWORD': 'future_secret',
+        'HOST': 'toy-mysql'
     }
 }
 
