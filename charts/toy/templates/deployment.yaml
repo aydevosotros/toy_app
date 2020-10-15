@@ -82,7 +82,7 @@ spec:
       name: {{ include "toy.fullname" . }}-mysql
     spec:
       containers:
-      - image: mysql:5.6
+      - image: mysql:8.0
         name: {{ include "toy.fullname" . }}-mysql
         env:
           # Use secret in real usage
