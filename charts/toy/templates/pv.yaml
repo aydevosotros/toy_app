@@ -19,3 +19,5 @@ metadata:
   name: mysql-pv-claim
 spec:
   volumeName: toy-mysql-storage
+  accessModes:
+    - ReadWriteMany
