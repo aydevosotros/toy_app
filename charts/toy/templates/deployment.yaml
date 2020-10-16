@@ -67,18 +67,19 @@ kind: Deployment
 metadata:
   name: {{ include "toy.fullname" . }}-mysql
   labels:
-    app: {{ include "toy.fullname" . }}-mysql
+    {{- include "toy.db-labels" . | nindent 4 }}
+
 spec:
   selector:
     matchLabels:
-      app: {{ include "toy.fullname" . }}-mysql
+      {{- include "toy.db-selectorLabels" . | nindent 6}}
   strategy:
     type: Recreate
   template:
     metadata:
       annotations: {}
       labels:
-        app: {{ include "toy.fullname" . }}-mysql
+        {{- include "toy.db-labels" . | nindent 8}}
       name: {{ include "toy.fullname" . }}-mysql
     spec:
       containers:
