@@ -96,7 +96,7 @@ spec:
         - name: mysql-persistent-storage
           devicePath: /var/lib/mysql
         volumeMounts:
-          - mountPath: "/etc/my.cnf"
+          - mountPath: "/etc/mysql"
             name: my-cnf
       volumes:
       - name: mysql-persistent-storage
@@ -105,3 +105,6 @@ spec:
       - name: my-cnf
         configMap:
           name: mysql-config-{{- include "toy.name" . }}
+          items:
+          - key: my-cnf
+            path: my.cnf
