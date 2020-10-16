@@ -1,24 +1,21 @@
-{{/*apiVersion: v1*/}}
-{{/*kind: PersistentVolume*/}}
+{{/*kind: StorageClass*/}}
+{{/*apiVersion: storage.k8s.io/v1*/}}
 {{/*metadata:*/}}
-{{/*  name: mysql-pv-volume*/}}
-{{/*  labels:*/}}
-{{/*    type: local*/}}
-{{/*spec:*/}}
-{{/*  storageClassName: manual*/}}
-{{/*  capacity:*/}}
-{{/*    storage: 20Gi*/}}
-{{/*  accessModes:*/}}
-{{/*    - ReadWriteOnce*/}}
-{{/*  hostPath:*/}}
-{{/*    path: "/mnt/data"*/}}
----
+{{/*  name: generic*/}}
+{{/*provisioner: kubernetes.io/aws-ebs*/}}
+{{/*parameters:*/}}
+{{/*  type: gp2*/}}
+{{/*  fsType: ext4*/}}
+{{/*---*/}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
   storageClassName: gp2
-  volumeName: toy-mysql-storage
+  volumeMode: Block
+  resources:
+    requests:
+      storae: 10Gi
   accessModes:
     - ReadWriteOnce
