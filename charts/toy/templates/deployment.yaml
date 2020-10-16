@@ -96,7 +96,7 @@ spec:
         - name: mysql-persistent-storage
           devicePath: /var/lib/mysql
         volumeMounts:
-          - mountPath: "/etc/mysql/my.cnf"
+          - mountPath: "/etc/my.cnf"
             name: my-cnf
       volumes:
       - name: mysql-persistent-storage
