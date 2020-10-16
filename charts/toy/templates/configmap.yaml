@@ -4,4 +4,5 @@ metadata:
   name: mysql-config-{{- include "toy.name" . }}
 data:
   my-cnf: |-
+    [mysqld]
     default-authentication-plugin=mysql_native_password
