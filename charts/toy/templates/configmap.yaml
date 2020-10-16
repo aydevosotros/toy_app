@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: mysql-config-{{- include "toy.name" . }}
 data:
-  default-authentication-plugin=mysql_native_password
+  my.cnf: |-
+    default-authentication-plugin=mysql_native_password
