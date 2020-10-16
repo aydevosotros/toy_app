@@ -104,4 +104,4 @@ spec:
           claimName: mysql-pv-claim
       - name: my-cnf
         configMap:
-          name: mysql-config-{{- include "toy.name"}}
+          name: mysql-config-{{- include "toy.name" . }}
