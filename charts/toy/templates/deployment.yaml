@@ -95,7 +95,13 @@ spec:
         volumeDevices:
         - name: mysql-persistent-storage
           devicePath: /var/lib/mysql
+        volumeMounts:
+          - mountPath: "/etc/mysql/my.cnf"
+            name: my-cnf
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
+      - name: my-cnf
+        configMap:
+          name: mysql-config-{{- include "toy.name"}}
