@@ -18,7 +18,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
-  storageClassName: ""
+  storageClassName: standard
   volumeName: toy-mysql-storage
   accessModes:
     - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
