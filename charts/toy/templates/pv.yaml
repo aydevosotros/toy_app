@@ -18,6 +18,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
+  storageClassName: gp2
   volumeName: toy-mysql-storage
   accessModes:
     - ReadWriteMany
