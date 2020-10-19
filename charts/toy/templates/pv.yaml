@@ -13,6 +13,8 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   accessModes:
     - ReadWriteOnce
+  capacity:
+    storage: 10Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
