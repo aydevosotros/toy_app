@@ -14,12 +14,14 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 10Gi
+  storageClassName: ebs-sc
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
+  storageClassName: ebs-sc
   selector:
     matchLabels:
       for_app: toy-mysql
