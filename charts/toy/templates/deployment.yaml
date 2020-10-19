@@ -73,8 +73,6 @@ spec:
   selector:
     matchLabels:
       {{- include "toy.db-selectorLabels" . | nindent 6}}
-  strategy:
-    type: Recreate
   template:
     metadata:
       annotations: {}
@@ -105,12 +103,20 @@ spec:
             cpu: "100m"
             memory: "128Mi"
       volumes:
-      - name: mysql-persistent-storage
-        persistentVolumeClaim:
-          claimName: mysql-pv-claim
-      - name: my-cnf
-        configMap:
-          name: mysql-config-{{- include "toy.name" . }}
-          items:
-          - key: my-cnf
-            path: my.cnf
+        - name: my-cnf
+          configMap:
+            name: mysql-config-{{- include "toy.name" . }}
+            items:
+            - key: my-cnf
+              path: my.cnf
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-pv-claim
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        volumeName: toy-mysql-volume
+        resources:
+          requests:
+            storage: 10Gi
+
