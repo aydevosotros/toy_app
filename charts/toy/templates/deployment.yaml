@@ -73,6 +73,7 @@ spec:
   selector:
     matchLabels:
       {{- include "toy.db-selectorLabels" . | nindent 6}}
+  replicas: 1
   template:
     metadata:
       labels:
@@ -93,7 +94,7 @@ spec:
           - mountPath: "/etc/mysql"
             name: my-cnf
           - mountPath: "/var/lib/mysql-files"
-            name: mysql-persistent-storage
+            name: mysql-pv-claim
         resources:
           limits:
             cpu: "800m"
