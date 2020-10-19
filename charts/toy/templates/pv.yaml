@@ -20,7 +20,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
-  storageClassName: ebs-sc
+  storageClassName: ebs-retain
   volumeName: toy-mysql-volume
   accessModes:
     - ReadWriteOnce
