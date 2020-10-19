@@ -116,7 +116,7 @@ spec:
         storageClassName: ebs-retain
         volumeName: toy-mysql-volume
         accessModes:
-        - ReadWriteOnce
+          - ReadWriteOnce
         resources:
           requests:
             storage: 10Gi
