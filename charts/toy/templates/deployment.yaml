@@ -113,9 +113,10 @@ spec:
     - metadata:
         name: mysql-pv-claim
       spec:
+        storageClassName: ebs-retain
+        volumeName: toy-mysql-volume
         accessModes:
         - ReadWriteOnce
-        volumeName: toy-mysql-volume
         resources:
           requests:
             storage: 10Gi

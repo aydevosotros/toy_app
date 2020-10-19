@@ -15,15 +15,15 @@
 {{/*    storage: 10Gi*/}}
 {{/*  storageClassName: ebs-sc*/}}
 {{/*---*/}}
-{{/*apiVersion: v1*/}}
-{{/*kind: PersistentVolumeClaim*/}}
-{{/*metadata:*/}}
-{{/*  name: mysql-pv-claim*/}}
-{{/*spec:*/}}
-{{/*  storageClassName: ebs-retain*/}}
-{{/*  volumeName: toy-mysql-volume*/}}
-{{/*  accessModes:*/}}
-{{/*    - ReadWriteOnce*/}}
-{{/*  resources:*/}}
-{{/*    requests:*/}}
-{{/*      storage: 10Gi*/}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+spec:
+  storageClassName: ebs-retain
+  volumeName: toy-mysql-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
