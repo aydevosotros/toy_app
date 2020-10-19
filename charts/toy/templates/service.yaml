@@ -18,18 +18,18 @@ spec:
     {{- include "toy.selectorLabels" . | nindent 4 }}
 ---
 ### toy-mysql ###
-{{/*apiVersion: v1*/}}
-{{/*kind: Service*/}}
-{{/*metadata:*/}}
-{{/*  name: {{ include "toy.fullname" . }}-mysql*/}}
-{{/*  labels:*/}}
-{{/*    {{- include "toy.db-labels" . | nindent 4 }}*/}}
-{{/*spec:*/}}
-{{/*  ports:*/}}
-{{/*    - protocol: TCP*/}}
-{{/*      port: 3306*/}}
-{{/*      targetPort: 3306*/}}
-{{/*  selector:*/}}
-{{/*    {{- include "toy.db-labels" . | nindent 4 }}*/}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "toy.fullname" . }}-mysql
+  labels:
+    {{- include "toy.db-labels" . | nindent 4 }}
+spec:
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  selector:
+    {{- include "toy.db-labels" . | nindent 4 }}
 
 
