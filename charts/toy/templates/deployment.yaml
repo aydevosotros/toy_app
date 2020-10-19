@@ -68,7 +68,6 @@ metadata:
   name: {{ include "toy.fullname" . }}-mysql
   labels:
     {{- include "toy.db-labels" . | nindent 4 }}
-
 spec:
   serviceName: mysql
   selector:
@@ -76,7 +75,6 @@ spec:
       {{- include "toy.db-selectorLabels" . | nindent 6}}
   template:
     metadata:
-      annotations: {}
       labels:
         {{- include "toy.db-labels" . | nindent 8}}
       name: {{ include "toy.fullname" . }}-mysql
