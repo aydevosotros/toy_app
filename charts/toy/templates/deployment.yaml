@@ -92,12 +92,18 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
-        volumeDevices:
-        - name: mysql-persistent-storage
-          devicePath: /var/lib/mysql-files
         volumeMounts:
           - mountPath: "/etc/mysql"
             name: my-cnf
+          - mountPath: "/var/lib/mysql-files"
+            name: mysql-persistent-storage
+        resources:
+          limits:
+            cpu: "800m"
+            memory: "1Gi"
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
