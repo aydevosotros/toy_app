@@ -12,7 +12,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
 spec:
-  storageClassName: ebs-sc
+  storageClassName: ebs-retain
   resources:
     requests:
       storage: 10Gi
