@@ -94,7 +94,7 @@ spec:
           name: mysql
         volumeDevices:
         - name: mysql-persistent-storage
-          devicePath: /var/lib/mysql
+          devicePath: /var/lib/mysql-files
         volumeMounts:
           - mountPath: "/etc/mysql"
             name: my-cnf
