@@ -70,6 +70,7 @@ metadata:
     {{- include "toy.db-labels" . | nindent 4 }}
 
 spec:
+  serviceName: mysql
   selector:
     matchLabels:
       {{- include "toy.db-selectorLabels" . | nindent 6}}
