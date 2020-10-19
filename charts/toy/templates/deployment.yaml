@@ -63,7 +63,7 @@ spec:
 ---
 ### DB MySQL ###
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "toy.fullname" . }}-mysql
   labels:
