@@ -9,7 +9,6 @@ spec:
     volumeID: mysql-volume
     fsType: ext4
     readOnly: false
-  storageClassName: ebs-retain
   persistentVolumeReclaimPolicy: Retain
   accessModes:
     - ReadWriteOnce
