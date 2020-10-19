@@ -102,6 +102,8 @@ spec:
           requests:
             cpu: "100m"
             memory: "128Mi"
+      nodeSelector:
+        topology.kubernetes.io/zone: us-west-2a
       volumes:
         - name: my-cnf
           configMap:
