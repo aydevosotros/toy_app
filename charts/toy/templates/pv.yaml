@@ -24,7 +24,8 @@ spec:
   selector:
     matchLabels:
       for_app: toy-mysql
-
+  accessModes:
+    - ReadWriteOnce
   storageClassName: ebs-retain
   resources:
     requests:
