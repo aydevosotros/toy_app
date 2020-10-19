@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django_prometheus.db.backends.mysql',
         'NAME': 'toy',
         'USER': 'toy',
-        'PASSWORD': 'future_secret',
+        'PASSWORD': 'toy_pass',
         'HOST': 'toy-mysql'
     }
 }
