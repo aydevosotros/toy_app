@@ -8,3 +8,16 @@ services:
     - ./toy_app:/opt/app
     ports:
     - 8000:8000
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+    - mysql-data:/var/lib/mysql-files
+    - ./compose/mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+    - 3306:3306
+
+volumes:
+  mysql-data:
