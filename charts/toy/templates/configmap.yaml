@@ -6,3 +6,13 @@ data:
   my-cnf: |-
     [mysqld]
     default-authentication-plugin=mysql_native_password
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-settings-{{- include "toy.name" . }}
+  labels:
+    {{- include "toy.labels" . | nindent 4 }}
+data:
+  settings.py: |-
+  {{ .Files.Get "configs/settings.py" | indent 4 }}

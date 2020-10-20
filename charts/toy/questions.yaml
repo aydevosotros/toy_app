@@ -1,15 +1,15 @@
 categories:
-    - QUSTODIO
+  - QUSTODIO
 questions:
-    - variable: persistence.enabled
-    default: "false"
-    description: "Enable persistent volume for WordPress"
-    type: boolean
-    required: true
-    label: WordPress Persistent Volume Enabled
-    show_subquestion_if: true
-    group: "WordPress Settings"
-    subquestions:
+  - variable: persistence.enabled
+  default: "false"
+  description: "Enable persistent volume for WordPress"
+  type: boolean
+  required: true
+  label: WordPress Persistent Volume Enabled
+  show_subquestion_if: true
+  group: "WordPress Settings"
+  subquestions:
     - variable: persistence.size
         default: "10Gi"
         description: "WordPress Persistent Volume Size"
