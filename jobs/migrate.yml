@@ -1,13 +1,13 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: django-migrations
+  name: django-migrations-job
 spec:
   template:
     spec:
       containers:
-        - name: django
-          image: ghcr.io/aydevosotros/toy-app
-          command: ['python', 'manage.py', 'migrate']
-      restartPolicy: Never
-  backoffLimit: 5
+        - name: app
+          image: ghcr.io/aydevosotros/toy-app:latest
+          command: ["/bin/sh", "-c"]
+          args: ["python manage.py makemigrations app; python manage.py migrate"]
+      restartPolicy: OnFailure
