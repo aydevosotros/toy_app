@@ -1,10 +1,16 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ include "toy.fullname" . }}-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+  labels:
+    app: {{ include "toy.fullname" . }}
 spec:
-  defaultBackend:
-    service:
-      name: {{ include "toy.fullname" . }}
-      port:
-        number: 80
+  rules:
+    -http:
+      paths:
+        - backend:
+            serviceName: {{ include "toy.fullname" . }}
+            servicePort: 80
+          path: /*
