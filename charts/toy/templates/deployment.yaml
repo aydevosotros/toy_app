@@ -83,8 +83,7 @@ spec:
       containers:
       - image: mysql:5.7
         name: {{ include "toy.fullname" . }}-mysql
-        command: ["rm"]
-        args: ["-rf", "/var/lib/mysql/*"]
+        command: ["bash"]
         env:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
