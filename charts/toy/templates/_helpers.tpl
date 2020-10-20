@@ -51,19 +51,19 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 Selector labels
 */}}
 {{- define "toy.selectorLabels" -}}
-version: {{ .Chart.AppVersion | quote }}
+{{/*version: {{ .Chart.AppVersion | quote }}*/}}
 app: {{ include "toy.name" . }}-mysql
 app.kubernetes.io/name: {{ include "toy.name" . }}-mysql
 app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{/*app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}*/}}
 {{- end }}
 
 {{- define "toy.db-selectorLabels" -}}
-version: {{ .Chart.AppVersion | quote }}
+{{/*version: {{ .Chart.AppVersion | quote }}*/}}
 app: {{ include "toy.name" . }}-mysql
 app.kubernetes.io/name: {{ include "toy.name" . }}-mysql
 app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{/*app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}*/}}
 {{- end }}
 
 {{/*
