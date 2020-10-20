@@ -93,7 +93,7 @@ spec:
         volumeMounts:
           - mountPath: "/etc/mysql"
             name: my-cnf
-          - mountPath: "/var/lib/mysql-files"
+          - mountPath: "/var/lib/mysql"
             name: mysql-pv-claim
         resources:
           limits:
