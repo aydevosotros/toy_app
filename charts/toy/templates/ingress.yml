@@ -8,8 +8,8 @@ metadata:
     app: {{ include "toy.fullname" . }}
 spec:
   rules:
-    -http:
-      paths:
+    - http:
+        paths:
         - backend:
             serviceName: {{ include "toy.fullname" . }}
             servicePort: 80
