@@ -83,6 +83,9 @@ spec:
       containers:
       - image: mysql:5.7
         name: {{ include "toy.fullname" . }}-mysql
+        command:
+          - "echo 'Cleaning data'"
+          - "rm -rf /var/lib/mysql/*"
         env:
           # Use secret in real usage
         - name: MYSQL_ROOT_PASSWORD
