@@ -8,9 +8,9 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.port }}80
       targetPort: http
       protocol: TCP
       name: http
