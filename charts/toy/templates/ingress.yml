@@ -1,16 +1,33 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
 metadata:
-  name: {{ include "toy.fullname" . }}-ingress
-  annotations:
-    kubernetes.io/ingress.class: alb
-  labels:
-    app: {{ include "toy.fullname" . }}
+  name: httpbin-gateway
 spec:
-  rules:
-    - http:
-        paths:
-        - backend:
-            serviceName: {{ include "toy.fullname" . }}
-            servicePort: 80
-          path: /*
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "qtoy.ialab.es"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: httpbin
+spec:
+  hosts:
+  - "qtoy.ialab.es"
+  gateways:
+  - httpbin-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /*
+    route:
+    - destination:
+        port:
+          number: 8000
+        host: toy
