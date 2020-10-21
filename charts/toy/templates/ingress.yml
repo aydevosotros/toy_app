@@ -50,4 +50,4 @@ spec:
       - path: /*
         backend:
           serviceName: toy
-          servicePort: 8000
+          servicePort: 8080
