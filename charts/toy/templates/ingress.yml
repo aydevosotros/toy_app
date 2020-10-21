@@ -47,7 +47,7 @@ spec:
   - host: qtoy.ialab.es
     http:
       paths:
-      - path: /status/*
+      - path: /*
         backend:
           serviceName: toy
           servicePort: 8000
