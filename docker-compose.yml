@@ -9,10 +9,12 @@ services:
     ports:
     - 8000:8000
     depends_on:
-      - mysql
+      - toy-mysql
 
-  mysql:
+  toy-mysql:
     image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
     volumes:
     - mysql-data:/var/lib/mysql-files
     - ./compose/mysql/my.cnf:/etc/mysql/my.cnf
