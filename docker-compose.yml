@@ -7,7 +7,7 @@ services:
     volumes:
     - ./toy_app:/opt/app
     ports:
-    - 8000:8000
+    - 8000:8080
     depends_on:
       - toy-mysql
 
