@@ -23,7 +23,7 @@ metadata:
   name: toy
 spec:
   hosts:
-  - "qtoy.ialab.es"
+  - toy
   gateways:
   - toy-gateway
   http:
