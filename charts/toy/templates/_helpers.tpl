@@ -56,8 +56,8 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 Selector labels
 */}}
 {{- define "toy.selectorLabels" -}}
-app: {{ include "toy.name" . }}-mysql
-app.kubernetes.io/name: {{ include "toy.name" . }}-mysql
+app: {{ include "toy.name" . }}
+app.kubernetes.io/name: {{ include "toy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
