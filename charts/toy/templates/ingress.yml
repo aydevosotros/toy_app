@@ -23,13 +23,13 @@ metadata:
   name: toy
 spec:
   hosts:
-  - qtoy.ialab.es
+  - "qtoy.ialab.es"
   gateways:
   - toy-gateway
   http:
   - match:
     - uri:
-        prefix: /*
+        prefix: /
     route:
     - destination:
         port:

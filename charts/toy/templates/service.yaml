@@ -5,8 +5,6 @@ metadata:
   name: {{ include "toy.fullname" . }}
   labels:
     {{- include "toy.labels" . | nindent 4 }}
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
 spec:
   type: ClusterIP
   ports:
@@ -25,6 +23,7 @@ metadata:
   labels:
     {{- include "toy.db-labels" . | nindent 4 }}
 spec:
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 3306
