@@ -23,7 +23,7 @@ metadata:
   name: toy
 spec:
   hosts:
-  - toy
+  - qtoy.ialab.es
   gateways:
   - toy-gateway
   http:
@@ -34,7 +34,7 @@ spec:
     - destination:
         port:
           number: 8080
-        host: qtoy.ialab.es
+        host: toy
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
