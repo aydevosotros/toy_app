@@ -2,6 +2,9 @@
 django
 djangorestframework
 
+### Cache ###
+django-redis
+
 ### DataBase ###
 mysqlclient
 
