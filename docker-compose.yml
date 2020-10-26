@@ -10,6 +10,8 @@ services:
     - 8000:8080
     depends_on:
       - toy-mysql
+      - redis
+    command: "python manage.py runserver 0.0.0.0:8080"
 
   toy-mysql:
     image: mysql:5.7
@@ -20,6 +22,9 @@ services:
     - ./compose/mysql/my.cnf:/etc/mysql/my.cnf
     ports:
     - 3306:3306
+
+  redis:
+    image: redis:latest
 
 volumes:
   mysql-data:

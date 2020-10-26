@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-import welcome.views
+import welcome.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', welcome.views.hello_world),
+    path('', include(welcome.urls)),
     path('', include('django_prometheus.urls')),
 ]

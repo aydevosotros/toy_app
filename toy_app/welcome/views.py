@@ -1,3 +1,6 @@
+from random import randint
+
+from django.views.decorators.cache import cache_page
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from datetime import datetime
@@ -20,6 +23,14 @@ def hello_world(request):
     return Response(
         {"message": f"Hello, you. You have been here "
                     f"{visit.visits} times!"}
+    )
+
+
+@api_view()
+def random_view(request):
+    return Response(
+        {'message': f'Returning from cached a cached number:'
+                    f' {randint(0, 100)}!'}
     )
 
 
