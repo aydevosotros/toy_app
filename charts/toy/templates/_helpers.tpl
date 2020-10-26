@@ -58,7 +58,6 @@ Selector labels
 */}}
 {{- define "toy.selectorLabels" -}}
 app: {{ include "toy.name" . }}
-version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/name: {{ include "toy.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
