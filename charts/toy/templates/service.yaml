@@ -15,7 +15,7 @@ spec:
   selector:
     {{- include "toy.selectorLabels" . | nindent 4 }}
 ---
-### toy-mysql ###
+### mysql ###
 apiVersion: v1
 kind: Service
 metadata:
@@ -30,5 +30,26 @@ spec:
       targetPort: 3306
   selector:
     {{- include "toy.db-labels" . | nindent 4 }}
+---
+### redis
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    version: {{ .Chart.AppVersion | quote }}
+    app: redis
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6378
+      protocol: TCP
+      targetPort: 6379
+  selector:
+    version: {{ .Chart.AppVersion | quote }}
+    app: redis
 
 
