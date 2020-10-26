@@ -39,9 +39,10 @@ app: {{ include "toy.name" . }}
 {{- end }}
 
 {{- define "toy.labels" -}}
-helm.sh/chart: {{ include "toy.chart" . }}
-{{ include "toy.selectorLabels" . }}
+app: {{ include "toy.name" . }}
+version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+helm.sh/chart: {{ include "toy.chart" . }}
 {{- end }}
 
 {{- define "toy.db-labels" -}}
