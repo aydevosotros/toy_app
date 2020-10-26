@@ -34,6 +34,15 @@ def random_view(request):
     )
 
 
+@api_view
+def new_view(requests):
+    return Response(
+        {
+            'message': f'Work In Progress'
+        }
+    )
+
+
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
