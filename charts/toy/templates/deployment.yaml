@@ -89,7 +89,7 @@ spec:
           value: password
         ports:
         - containerPort: 3306
-          name: mysql
+          name: tcp-default
         volumeMounts:
           - mountPath: "/etc/mysql"
             name: my-cnf
@@ -149,12 +149,12 @@ spec:
           image: redis
           ports:
             - containerPort: 6379
-              name: redis-default
+              name: tcp-default
         - name: redis-exporter
           image: bitnami/redis-exporter
           ports:
             - containerPort: 9121
-              name: metrics
+              name: tcp-metrics
           resources:
             requests:
               cpu: 100m
