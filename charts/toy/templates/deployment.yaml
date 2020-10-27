@@ -137,7 +137,6 @@ spec:
   selector:
     matchLabels:
       app: redis
-      version: {{ .Chart.AppVersion | quote }}
   template:
     metadata:
       labels:
@@ -174,7 +173,6 @@ spec:
   selector:
     matchLabels:
       app: rabbitmq
-      version: {{ .Chart.AppVersion | quote }}
   template:
     metadata:
       name: rabbitmq
@@ -227,7 +225,6 @@ spec:
   selector:
     matchLabels:
       app: celery-scheduler
-      version: {{ .Chart.AppVersion | quote }}
   template:
     metadata:
       name: celery-scheduler
