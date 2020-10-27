@@ -11,7 +11,48 @@ services:
     depends_on:
       - toy-mysql
       - redis
+      - celery-beat
     command: "python manage.py runserver 0.0.0.0:8080"
+    secrets:
+      - rabbit_user
+      - rabbit_pass
+
+  celery-beat:
+    build:
+      context: .
+    volumes:
+      - ./toy_app:/opt/app
+    secrets:
+      - rabbit_user
+      - rabbit_pass
+    command: "celery -A toy_app.task beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler"
+    depends_on:
+      - rabbitmq
+      - celery-worker
+
+  celery-worker:
+    build:
+      context: .
+    volumes:
+    - ./toy_app:/opt/app
+    secrets:
+      - rabbit_user
+      - rabbit_pass
+    command: "celery -A toy_app.task worker --loglevel=info"
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3.8.9-management
+    environment:
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbit_user
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbit_pass
+      RABBITMQ_DEFAULT_VHOST: "toy"
+    ports:
+    - 15672:15672
+    secrets:
+      - rabbit_user
+      - rabbit_pass
 
   toy-mysql:
     image: mysql:5.7
@@ -28,3 +69,9 @@ services:
 
 volumes:
   mysql-data:
+
+secrets:
+  rabbit_user:
+    file: ./secrets/rabbit_user
+  rabbit_pass:
+    file: ./secrets/rabbit_pass

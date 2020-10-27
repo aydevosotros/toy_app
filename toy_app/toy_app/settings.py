@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+from utils.secret_loader import load_secret
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_prometheus',
     'rest_framework',
+    'django_celery_beat',
     ### Own apps ###
     'welcome',
 ]
@@ -140,3 +143,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+### CELERY ###
+BROKER_URL = (f'amqp://'
+              f'{load_secret("/run/secrets/rabbit_user")}:'
+              f'{load_secret("/run/secrets/rabbit_pass")}'
+              f'@rabbitmq:5672/toy')

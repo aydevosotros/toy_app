@@ -137,6 +137,7 @@ spec:
   selector:
     matchLabels:
       app: redis
+      version: {{ .Chart.AppVersion | quote }}
   template:
     metadata:
       labels:
@@ -146,7 +147,7 @@ spec:
     spec:
       containers:
         - name: redis-toy
-          image: redis
+          image: redis:4
           ports:
             - containerPort: 6379
               name: redis-default
@@ -159,3 +160,115 @@ spec:
             requests:
               cpu: 100m
               memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  labels:
+    app: rabbitmq
+    version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/name: rabbitmq
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: rabbitmq
+      version: {{ .Chart.AppVersion | quote }}
+  template:
+    metadata:
+      name: rabbitmq
+      labels:
+        app: rabbitmq
+        version: {{ .Chart.AppVersion | quote }}
+        app.kubernetes.io/name: rabbitmq
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: rabbitmq-management
+          image: rabbitmq:3.8.9-management
+          env:
+            - name: RABBITMQ_DEFAULT_USER_FILE
+              value: "/run/secrets/rabbit_user"
+            - name: RABBITMQ_DEFAULT_PASS_FILE
+              value: "/run/secrets/rabbit_pass"
+            - name: RABBITMQ_DEFAULT_VHOST
+              value: "toy"
+          volumeMounts:
+            - mountPath: "/run/secrets/"
+              name: rabbit_user
+              readOnly: true
+            - mountPath: "/run/secrets/"
+              name: rabbit_pass
+              readOnly: true
+          ports:
+            - containerPort: 5672
+              protocol: TCP
+              name: amqp
+            - containerPort: 15672
+              protocol: TCP
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+      volumes:
+        - name: rabbit_user
+          secret:
+            secretName: rabbitmq_secret
+            items:
+              - key: username
+                path: "rabbit_user"
+        - name: rabbit_pass
+          secret:
+            secretName: rabbitmq_secret
+            items:
+              - key: password
+                path: "rabbit_pass"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-scheduler
+  labels:
+    app: celery-scheduler
+    version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/name: celery-scheduler
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: celery-scheduler
+      version: {{ .Chart.AppVersion | quote }}
+  template:
+    metadata:
+      name: celery-scheduler
+      labels:
+        app: celery-scheduler
+        version: {{ .Chart.AppVersion | quote }}
+        app.kubernetes.io/name: celery-scheduler
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: celery-scheduler
+          image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
+          volumeMounts:
+            - mountPath: "/run/secrets/"
+              name: rabbit_user
+              readOnly: true
+            - mountPath: "/run/secrets/"
+              name: rabbit_pass
+              readOnly: true
+      volumes:
+        - name: rabbit_user
+          secret:
+            secretName: rabbitmq_secret
+            items:
+              - key: username
+                path: "rabbit_user"
+        - name: rabbit_pass
+          secret:
+            secretName: rabbitmq_secret
+            items:
+              - key: password
+                path: "rabbit_pass"

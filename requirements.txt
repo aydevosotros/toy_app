@@ -2,6 +2,9 @@
 django
 djangorestframework
 
+### Celery beat ###
+django-celery-beat
+
 ### Cache ###
 django-redis
 
