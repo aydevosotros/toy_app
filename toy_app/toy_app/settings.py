@@ -146,6 +146,6 @@ STATIC_URL = '/static/'
 
 ### CELERY ###
 BROKER_URL = (f'amqp://'
-              f'{load_secret("/run/secrets/rabbit_user")}:'
-              f'{load_secret("/run/secrets/rabbit_pass")}'
+              f'{load_secret("/run/secrets/rabbitmq/rabbit_user")}:'
+              f'{load_secret("/run/secrets/rabbitmq/rabbit_pass")}'
               f'@rabbitmq:5672/toy')
