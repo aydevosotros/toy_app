@@ -154,7 +154,7 @@ spec:
           image: bitnami/redis-exporter
           ports:
             - containerPort: 9121
-              name: exporter-metrics
+              name: metrics
           resources:
             requests:
               cpu: 100m
