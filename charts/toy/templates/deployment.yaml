@@ -189,17 +189,14 @@ spec:
           image: rabbitmq:3.8.9-management
           env:
             - name: RABBITMQ_DEFAULT_USER_FILE
-              value: "/run/secrets/rabbit_user"
+              value: "/run/secrets/rabbitmq/rabbit_user"
             - name: RABBITMQ_DEFAULT_PASS_FILE
-              value: "/run/secrets/rabbit_pass"
+              value: "/run/secrets/rabbitmq/rabbit_pass"
             - name: RABBITMQ_DEFAULT_VHOST
               value: "toy"
           volumeMounts:
-            - mountPath: "/run/secrets/rabbit_user"
-              name: rabbit-user
-              readOnly: true
-            - mountPath: "/run/secrets/rabbit_pass"
-              name: rabbit-pass
+            - mountPath: "/run/secrets/rabbitmq"
+              name: rabbitmq-secrets
               readOnly: true
           ports:
             - containerPort: 5672
@@ -213,18 +210,9 @@ spec:
               cpu: 100m
               memory: 100Mi
       volumes:
-        - name: rabbit-user
+        - name: rabbitmq-secrets
           secret:
-            secretName: rabbitmq-secret
-            items:
-              - key: username
-                path: ""
-        - name: rabbit-pass
-          secret:
-            secretName: rabbitmq-secret
-            items:
-              - key: password
-                path: ""
+            secretName: rabbitmq-secrets
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -253,22 +241,11 @@ spec:
         - name: celery-scheduler
           image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           volumeMounts:
-            - mountPath: "/run/secrets/rabbit_user"
-              name: rabbit-user
-              readOnly: true
-            - mountPath: "/run/secrets/rabbit_pass"
-              name: rabbit-pass
+            - mountPath: "/run/secrets/rabbitmq"
+              name: rabbitmq-secrets
               readOnly: true
       volumes:
-        - name: rabbit-user
+        - name: rabbitmq-secrets
           secret:
-            secretName: rabbitmq-secret
-            items:
-              - key: username
-                path: ""
-        - name: rabbit-pass
-          secret:
-            secretName: rabbitmq-secret
-            items:
-              - key: password
-                path: ""
+            secretName: rabbitmq-secrets
+
