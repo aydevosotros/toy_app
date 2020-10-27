@@ -188,10 +188,10 @@ spec:
         - name: rabbitmq-management
           image: rabbitmq:3.8.9-management
           env:
-            - name: RABBITMQ_DEFAULT_USER_FILE
-              value: "/run/secrets/rabbitmq/rabbit_user"
-            - name: RABBITMQ_DEFAULT_PASS_FILE
-              value: "/run/secrets/rabbitmq/rabbit_pass"
+{{/*            - name: RABBITMQ_DEFAULT_USER_FILE*/}}
+{{/*              value: "/run/secrets/rabbitmq/rabbit_user"*/}}
+{{/*            - name: RABBITMQ_DEFAULT_PASS_FILE*/}}
+{{/*              value: "/run/secrets/rabbitmq/rabbit_pass"*/}}
             - name: RABBITMQ_DEFAULT_VHOST
               value: "toy"
           volumeMounts:
