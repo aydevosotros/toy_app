@@ -196,10 +196,10 @@ spec:
               value: "toy"
           volumeMounts:
             - mountPath: "/run/secrets/"
-              name: rabbit_user
+              name: rabbit-user
               readOnly: true
             - mountPath: "/run/secrets/"
-              name: rabbit_pass
+              name: rabbit-pass
               readOnly: true
           ports:
             - containerPort: 5672
@@ -254,10 +254,10 @@ spec:
           image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           volumeMounts:
             - mountPath: "/run/secrets/"
-              name: rabbit_user
+              name: rabbit-user
               readOnly: true
             - mountPath: "/run/secrets/"
-              name: rabbit_pass
+              name: rabbit-pass
               readOnly: true
       volumes:
         - name: rabbit_user
