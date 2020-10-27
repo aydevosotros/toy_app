@@ -195,10 +195,10 @@ spec:
             - name: RABBITMQ_DEFAULT_VHOST
               value: "toy"
           volumeMounts:
-            - mountPath: "/run/secrets/"
+            - mountPath: "/run/secrets/rabbit_user"
               name: rabbit-user
               readOnly: true
-            - mountPath: "/run/secrets/"
+            - mountPath: "/run/secrets/rabbit_pass"
               name: rabbit-pass
               readOnly: true
           ports:
@@ -218,13 +218,13 @@ spec:
             secretName: rabbitmq-secret
             items:
               - key: username
-                path: "rabbit_user"
+                path: ""
         - name: rabbit-pass
           secret:
             secretName: rabbitmq-secret
             items:
               - key: password
-                path: "rabbit_pass"
+                path: ""
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -253,10 +253,10 @@ spec:
         - name: celery-scheduler
           image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           volumeMounts:
-            - mountPath: "/run/secrets/"
+            - mountPath: "/run/secrets/rabbit_user"
               name: rabbit-user
               readOnly: true
-            - mountPath: "/run/secrets/"
+            - mountPath: "/run/secrets/rabbit_pass"
               name: rabbit-pass
               readOnly: true
       volumes:
@@ -265,10 +265,10 @@ spec:
             secretName: rabbitmq-secret
             items:
               - key: username
-                path: "rabbit_user"
+                path: ""
         - name: rabbit-pass
           secret:
             secretName: rabbitmq-secret
             items:
               - key: password
-                path: "rabbit_pass"
+                path: ""
