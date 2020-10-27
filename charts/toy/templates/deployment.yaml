@@ -187,13 +187,13 @@ spec:
           image: rabbitmq:3.8.9-management
           env:
             - name: RABBITMQ_DEFAULT_USER_FILE
-              value: "/run/secrets/rabbitmq/rabbit_user"
+              value: "/run/secrets/rabbit_user"
             - name: RABBITMQ_DEFAULT_PASS_FILE
-              value: "/run/secrets/rabbitmq/rabbit_pass"
+              value: "/run/secrets/rabbit_pass"
             - name: RABBITMQ_DEFAULT_VHOST
               value: "toy"
           volumeMounts:
-            - mountPath: "/run/secrets/rabbitmq"
+            - mountPath: "/run/secrets/"
               name: rabbitmq-secrets
               readOnly: true
           ports:
@@ -238,7 +238,7 @@ spec:
         - name: celery-scheduler
           image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           volumeMounts:
-            - mountPath: "/run/secrets/rabbitmq"
+            - mountPath: "/run/secrets/"
               name: rabbitmq-secrets
               readOnly: true
       volumes:
