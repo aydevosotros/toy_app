@@ -237,6 +237,8 @@ spec:
       containers:
         - name: celery-scheduler
           image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
+          command: ["/bin/sh"]
+          args: ["-c", "celery -A toy_app.task beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler"]
           volumeMounts:
             - mountPath: "/run/secrets/rabbitmq"
               name: rabbitmq-secrets
