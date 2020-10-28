@@ -282,7 +282,7 @@ spec:
         - name: celery-worker
           image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
           command: ["/bin/sh"]
-          args: ["-c", "celery -A toy_app.task worker --loglevel=info]
+          args: ["-c", "celery -A toy_app.task worker --loglevel=info"]
           volumeMounts:
             - mountPath: "/run/secrets/rabbitmq"
               name: rabbitmq-secrets
