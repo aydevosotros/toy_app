@@ -25,7 +25,7 @@ helm:
   releaseName: new-release
   # The version of the chart or semver constraint of the chart to find. If a constraint
   # is specified it is evaluated each time git changes.
-  version: v0.2.158
+#  version: v0.2.158
   # Any values that should be placed in the `values.yaml` and passed to helm during
   # install.
   values:
@@ -99,9 +99,9 @@ targetCustomizations:
   # metav1.LabelSelector format. If clusterGroupSelector or clusterGroup is specified,
   # clusterSelector will be used only to further refine the selection after
   # clusterGroupSelector and clusterGroup is evaluated.
-  clusterSelector:
-    matchLabels:
-      fleet.cattle.io/cluster-name: "c-gb8xw",
+#  clusterSelector:
+#    matchLabels:
+#      fleet.cattle.io/cluster-name: "c-gb8xw",
   # A selector used to match cluster groups.
 #  clusterGroupSelector:
 #    matchLabels:
