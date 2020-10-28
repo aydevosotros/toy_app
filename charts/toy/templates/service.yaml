@@ -28,6 +28,7 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: 3306
+      name: mysql
   selector:
     {{- include "toy.db-labels" . | nindent 4 }}
 ---
@@ -48,6 +49,7 @@ spec:
     - port: 6379
       protocol: TCP
       targetPort: 6379
+      name: redis
   selector:
     version: {{ .Chart.AppVersion | quote }}
     app: redis

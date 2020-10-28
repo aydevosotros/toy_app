@@ -97,7 +97,7 @@ spec:
           value: password
         ports:
         - containerPort: 3306
-          name: mysql-default
+          name: mysql
         volumeMounts:
           - mountPath: "/etc/mysql"
             name: my-cnf
