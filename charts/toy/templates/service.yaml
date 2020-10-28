@@ -67,7 +67,7 @@ spec:
   type: ClusterIP
   selector:
     version: {{ .Chart.AppVersion | quote }}
-    app: redis
+    app: rabbitmq
   ports:
     - port: 5672
       protocol: TCP
