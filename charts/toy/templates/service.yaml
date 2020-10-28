@@ -56,7 +56,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: reabbitmq
+  name: rabbitmq
   labels:
     app: rabbitmq
     version: {{ .Chart.AppVersion | quote }}
@@ -72,8 +72,10 @@ spec:
     - port: 5672
       protocol: TCP
       targetPort: 5672
+      name: amqp
     - port: 15672
       protocol: TCP
       targetPort: 15672
+      name: http
 
 
