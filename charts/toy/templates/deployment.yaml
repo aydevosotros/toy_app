@@ -255,4 +255,39 @@ spec:
         - name: rabbitmq-secrets
           secret:
             secretName: rabbitmq-secrets
-
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-worker
+  labels:
+    app: celery-worker
+    version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/name: celery-worker
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: celery-worker
+  template:
+    metadata:
+      name: celery-worker
+      labels:
+        app: celery-worker
+        version: {{ .Chart.AppVersion | quote }}
+        app.kubernetes.io/name: celery-worker
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: celery-worker
+          image: "{{ .Values.image.name }}:{{ .Chart.AppVersion }}"
+          command: ["/bin/sh"]
+          args: ["-c", "celery -A toy_app.task worker --loglevel=info]
+          volumeMounts:
+            - mountPath: "/run/secrets/rabbitmq"
+              name: rabbitmq-secrets
+              readOnly: true
+      volumes:
+        - name: rabbitmq-secrets
+          secret:
+            secretName: rabbitmq-secrets
