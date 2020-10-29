@@ -5,7 +5,7 @@ metadata:
   name: toy-repo
   # For single cluster use fleet-local, otherwise use the namespace of
   # your choosing
-  namespace: toy-dev
+  namespace:  toy-dev
 spec:
   # This can be a HTTPS or git URL.  If you are using a git URL then
   # clientSecretName will probably need to be set to supply a credential.
@@ -16,7 +16,7 @@ spec:
   # Enforce all resources go to this target namespace. If a cluster scoped
   # resource is found the deployment will fail.
   #
-  # targetNamespace: app1
+  targetNamespace: toy-cd
 
   # Any branch can be watched, this field is optional. If not specified the
   # branch is assumed to be master
@@ -44,30 +44,7 @@ spec:
   # - single-path
   # - multiple-paths/*
   paths:
-  - charts
-
-  helm:
-    # Use a custom location for the Helm chart. This can refer to any go-getter URL.
-    # This allows one to download charts from most any location.  Also know that
-    # go-getter URL supports adding a digest to validate the download. If repo
-    # is set below this field is the name of the chart to lookup
-    chart: ./toy
-    # A https URL to a Helm repo to download the chart from. It's typically easier
-    # to just use `chart` field and refer to a tgz file.  If repo is used the
-    # value of `chart` will be used as the chart name to lookup in the Helm repository.
-    repo: https://charts.rancher.io
-    # A custom release name to deploy the chart as. If not specified a release name
-    # will be generated.
-    releaseName: my-release
-    # The version of the chart or semver constraint of the chart to find. If a constraint
-    # is specified it is evaluated each time git changes.
-    # version: 0.1.0
-    # Any values that should be placed in the `values.yaml` and passed to helm during
-    # install.
-    values:
-      any-custom: value
-    # Override immutable resources. This could be dangerous.
-    force: false
+  - charts/toy
 
   # The service account that will be used to perform this deployment.
   # This is the name of the service account that exists in the
