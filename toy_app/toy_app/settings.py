@@ -88,7 +88,7 @@ DATABASES = {
         'NAME': 'toy',
         'USER': 'toy',
         'PASSWORD': 'toy_pass',
-        'HOST': 'toy-mysql'
+        'HOST': 'mysql'
     }
 }
 
