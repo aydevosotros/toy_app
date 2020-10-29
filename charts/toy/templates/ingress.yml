@@ -34,4 +34,4 @@ spec:
     - destination:
         port:
           number: 8080
-        host: toy
+        host: api
