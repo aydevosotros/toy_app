@@ -82,4 +82,8 @@ spec:
   # style. Refer to the "Mapping to Downstream Clusters" docs for
   # more information.
   #
-  # targets: ...
+  targets:
+    - name: dev
+      clusterSelector:
+        matchLabels:
+          env: dev
