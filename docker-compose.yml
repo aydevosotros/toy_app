@@ -72,7 +72,7 @@ services:
       context: ./compose/doc
     volumes:
       - ./toy_app:/opt/app
-      - ./docs:/docs
+      - ./doc:/doc
     ports:
     - 8000:8000
 
