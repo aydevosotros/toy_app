@@ -38,7 +38,7 @@ def random_view(request):
 def new_view(requests):
     return Response(
         {
-            'message': f'Work In Progress. And keep going'
+            'message': f'Work In Progress. And keep going.'
         }
     )
 
