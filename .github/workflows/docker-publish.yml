@@ -6,6 +6,11 @@ on:
     tags:
       - v*
 
+  pages:
+    # Publish on release
+    tags:
+      - v*
+
   # Run tests for any PRs.
   pull_request:
 
@@ -76,7 +81,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Generate your awesome content
-        run: docker-compose run docs make html
+        run: docker-compose run doc make html
 
       - name: Publish generated content to GitHub Pages
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
