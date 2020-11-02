@@ -79,5 +79,26 @@ spec:
       protocol: TCP
       targetPort: 15672
       name: http
-
+---
+### docs
+apiVersion: v1
+kind: Service
+metadata:
+  name: docs
+  labels:
+    app: docs
+    version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/name: docs
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+spec:
+  type: ClusterIP
+  selector:
+    app: docs
+    version: {{ .Chart.AppVersion | quote }}
+  ports:
+    - port: 8000
+      protocol: TCP
+      targetPort: 8000
+      name: http
 
