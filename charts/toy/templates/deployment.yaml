@@ -168,6 +168,7 @@ spec:
               cpu: 100m
               memory: 100Mi
 ---
+### RABBITMQ ###
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -220,6 +221,7 @@ spec:
           secret:
             secretName: rabbitmq-secrets
 ---
+### CELERY SCHEDULER ###
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -256,6 +258,7 @@ spec:
           secret:
             secretName: rabbitmq-secrets
 ---
+### CELERY WORKERS ###
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -291,3 +294,33 @@ spec:
         - name: rabbitmq-secrets
           secret:
             secretName: rabbitmq-secrets
+---
+### DOCS ###
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docs
+  labels:
+    app: docs
+    version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/name: docs
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: docs
+  template:
+    metadata:
+      labels:
+        app: docs
+        version: {{ .Chart.AppVersion | quote }}
+        app.kubernetes.io/name: docs
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: docs
+          image: "{{ .Values.image.name }}-docs:{{ .Chart.AppVersion }}"
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+              name: http
