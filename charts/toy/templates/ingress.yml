@@ -30,11 +30,11 @@ spec:
     - match:
       - uri:
           prefix: /docs
-        route:
-          - destination:
-              host: docs
-              port:
-                number: 8000
+      route:
+        - destination:
+            host: docs
+            port:
+              number: 8000
     - match:
       - uri:
           prefix: /
