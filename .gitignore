@@ -1,5 +1,8 @@
 ### IDEAs stuff ###
 .idea
 
+### Internal presentation ###
+slides/
+
 ### Python stuff ###
 **__pycache__**

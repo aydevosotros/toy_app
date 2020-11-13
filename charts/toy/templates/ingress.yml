@@ -32,9 +32,9 @@ spec:
           prefix: /docs
       route:
         - destination:
-            host: docs
-            port:
-              number: 8000
+          host: docs
+          port:
+            number: 8000
     - match:
       - uri:
           prefix: /
