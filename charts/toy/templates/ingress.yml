@@ -29,14 +29,6 @@ spec:
   http:
     - match:
       - uri:
-          prefix: /docs
-      route:
-        - destination:
-          host: docs
-          port:
-            number: 8000
-    - match:
-      - uri:
           prefix: /
       route:
         - destination:
