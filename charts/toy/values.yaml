@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  name: docker.pkg.github.com/aydevosotros/toy-app
+  name: ghcr.io//aydevosotros/toy-app
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "master"
