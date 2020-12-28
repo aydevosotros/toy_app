@@ -5,6 +5,6 @@
 # Default: default
 defaultNamespace: toy-cd
 helm:
-  chart: ""
+  chart: "./charts/toy"
 
 
