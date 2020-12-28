@@ -123,7 +123,7 @@ spec:
     - metadata:
         name: mysql-pv-claim
       spec:
-        storageClassName: ebs-retain
+        storageClassName: gp2
         volumeName: toy-mysql-volume
         accessModes:
           - ReadWriteOnce
